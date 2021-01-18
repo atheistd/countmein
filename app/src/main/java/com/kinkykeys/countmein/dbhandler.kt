@@ -10,7 +10,6 @@ import java.security.AccessControlContext
 val DATABASE_NAME = "sigma"
 val TABLE_NAME = "students_x"
 val COL_ID = "id"
-val COL_NAME = "name"
 val COL_SUB1 = "sub1"
 val COL_SUB2 = "sub2"
 val COL_SUB3 = "sub3"
@@ -21,7 +20,6 @@ class dbhandler(var context: Context) : SQLiteOpenHelper(context, DATABASE_NAME,
 
         val createTable = "CREATE TABLE " + TABLE_NAME + " (" +
                 COL_ID + "INTEGER PRIMARY KEY," +
-                COL_NAME + "VARCHAR(256)," +
                 COL_SUB1 + "VARCHAR(256)," +
                 COL_SUB2 + "VARCHAR(256)," +
                 COL_SUB3 + "VARCHAR(256)," +

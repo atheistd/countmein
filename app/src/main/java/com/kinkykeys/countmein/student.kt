@@ -9,11 +9,7 @@ class student{
     var sub4: String = ""
 
 
-    constructor(id:Int,sub1:String,sub2:String,sub3:String,sub4:String) {
+    constructor(id:Int) {
         this.id = id
-        this.sub1 = sub1
-        this.sub2 = sub2
-        this.sub3 = sub3
-        this.sub4 = sub4
     }
 }
