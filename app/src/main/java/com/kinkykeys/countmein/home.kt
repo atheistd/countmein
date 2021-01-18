@@ -19,6 +19,9 @@ class home : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.home)
 
+        // idk what this is, just copy-pasta
+        val context = this
+
         // connect variables to UI elements from activity_main.xml to here
         val home_show_uid = findViewById(R.id.show_user_name) as TextView
         val temp_scan_button = findViewById(R.id.scan_code_button) as Button
