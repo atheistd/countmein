@@ -1,8 +1,10 @@
+
 package com.kinkykeys.countmein
 
 import android.content.Context
 import android.content.Intent
 import android.content.SharedPreferences
+import android.database.sqlite.SQLiteDatabase
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.provider.ContactsContract
@@ -29,6 +31,7 @@ class MainActivity : AppCompatActivity() {
         // idk wtf this is, but is necessary lol
         val sharedPreferences: SharedPreferences = this.getSharedPreferences(sharedPrefFile, Context.MODE_PRIVATE)
 
+
         // verify if credentials are already stored
         val shared_uid = sharedPreferences.getString("saved_uid", "default_uid")
         val shared_passwd = sharedPreferences.getString("saved_passwd", "default_passwd")
@@ -36,37 +39,45 @@ class MainActivity : AppCompatActivity() {
         if(shared_uid.isNullOrEmpty()) {
             // do nothing
         } else {
-            val intent = Intent(this, home::class.java)
-            startActivity(intent)
+            //val intent = Intent(this, home::class.java)
+            //startActivity(intent)
         }
 
-        // idk what this is, just copy-pasta
+        // idk what this is, just (sharedpreferences) copy-pasta
         val context = this
+
+        // db related init
+        val db = DataBaseHandler(context)
 
         // user enters credentials and gets logged in (without passwd verification for the moment)
         login_button.setOnClickListener(View.OnClickListener {
 
-            // something db related, idk what;
-            // var studentMA = student(var_uid.text.toString())
-            // var db = DataBaseHandler(context)
-            // db.insertData(studentMA)
-
             // declare more (temp) variables
-            val uid: String = var_uid.text.toString()
-            val passwd: String = var_passwd.text.toString()
+            val uid:String = var_uid.text.toString()
+            val passwd:String = var_passwd.text.toString()
 
             // commence editing session initalisation
             val editor:SharedPreferences.Editor =  sharedPreferences.edit()
             editor.putString("saved_uid", uid)
             editor.putString("saved_passwd", passwd)
 
+
             // git commit lol
             editor.apply()
             editor.commit()
 
+
+
+            // SQLite
+            var user = User()
+            user.dbUID = uid
+            user.dbPasswd = passwd
+            db.insertCred(user)
+
             //  segue into "home" activity
             val intent = Intent(this, home::class.java)
             startActivity(intent)
+
         })
 
 
