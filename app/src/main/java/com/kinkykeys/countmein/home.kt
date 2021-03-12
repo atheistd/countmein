@@ -27,17 +27,20 @@ class home : AppCompatActivity() {
         val context = this
 
         // connect variables to UI elements from activity_main.xml to here
-        val home_show_uid = findViewById(R.id.show_user_name) as TextView
+        val home_show_details = findViewById(R.id.show_user_name) as TextView
         val temp_scan_button = findViewById(R.id.scan_code_button) as Button
         val temp_stat_button = findViewById(R.id.status_button) as Button
         // val s_sub_name:TextView = findViewById(R.id.last_sub_name) as TextView
 
-        // same voodoo magic from MainActivity
-        val sharedPreferences: SharedPreferences = this.getSharedPreferences(sharedPrefFile, Context.MODE_PRIVATE)
-        val home_uid = sharedPreferences.getString("saved_uid", "default_uid")
+        // SQL init
+        val db = DataBaseHandler(context)
 
-        home_show_uid.setText("Welcome, ${home_uid}").toString()
+        // retrieve values
+        var cred = db.readCred()
+        var initCred = cred[0]
+        var db_uid = initCred.dbUID
 
+        home_show_details.text = "Welcome, " + db_uid + "\n"
 
         temp_scan_button.setOnClickListener(View.OnClickListener {
             val intent = Intent(this, scan::class.java)

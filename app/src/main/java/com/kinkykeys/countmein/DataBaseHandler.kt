@@ -75,6 +75,15 @@ class DataBaseHandler(var context:Context) : SQLiteOpenHelper(context, DATABASEN
         return list
     }
 
+    fun clearCreds() {
+
+        val database = this.writableDatabase
+        val contentValues = ContentValues()
+
+        val result = database.delete(CREDTABLE, "", null)
+
+    }
+
     fun insertCred(user: User) {
 
         val database = this.writableDatabase
@@ -83,7 +92,7 @@ class DataBaseHandler(var context:Context) : SQLiteOpenHelper(context, DATABASEN
         contentValues.put(COL_UID, user.dbUID)
         contentValues.put(COL_PASSWD, user.dbPasswd)
 
-        val result = database.insert(ATTABLE, null, contentValues)
+        val result = database.insert(CREDTABLE, null, contentValues)
 
         if (result == (0).toLong()) {
 
