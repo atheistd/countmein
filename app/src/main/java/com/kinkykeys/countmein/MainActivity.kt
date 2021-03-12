@@ -38,7 +38,10 @@ class MainActivity : AppCompatActivity() {
             // do nothing, the cred table is empty
         } else {
             val intent = Intent(this, home::class.java)
+            intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
             startActivity(intent)
+
+            finish()
         }
 
 
@@ -59,7 +62,10 @@ class MainActivity : AppCompatActivity() {
 
             //  segue into "home" activity
             val intent = Intent(this, home::class.java)
+            intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
             startActivity(intent)
+
+            finish()
 
         })
 

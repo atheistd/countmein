@@ -25,14 +25,22 @@ class disaster_forecast : AppCompatActivity() {
         var attendance = db.readData()
         attendance_view.text = ""
 
-        for (i in 0 until attendance.size) {
-            attendance_view.append("\nScan date: " + attendance[i].dbDate.toString() + "\tScan time: " + attendance[i].dbTime.toString() + "\tSubject: " + attendance[i].dbSub.toString())
-        }
+        var temp_day = ""
+        var table_size = attendance.size
+        var i = 0
 
-        // TO DO
-        // THIS HAS NOT BEEN IMPLEMENTED YET
-        // DONT FORGET
-        // add the logic to add a carriage return after every day
+        do {
+
+            if (temp_day.equals(attendance[i].dbDate.toString(), true)) {
+                // do nothing as both dates are same
+            } else {
+                attendance_view.append("\n\n" + attendance[i].dbDate.toString())
+                temp_day = attendance[i].dbDate.toString()
+            }
+
+            attendance_view.append("\nScan time: " + attendance[i].dbTime.toString() + "\tSubject: " + attendance[i].dbSub.toString())
+            i = i + 1
+        } while (i < table_size)
 
 
     }

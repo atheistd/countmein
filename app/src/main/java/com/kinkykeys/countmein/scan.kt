@@ -78,7 +78,9 @@ class scan : AppCompatActivity() {
 
                 // goto the attendance intent to verify the
                 val intent = Intent(this, disaster_forecast::class.java)
+                intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
                 startActivity(intent)
+
                 finish()
 
             }
