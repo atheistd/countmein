@@ -10,6 +10,7 @@ val DATABASENAME = "MY DATABASE"
 
 val ATTABLE = "studentAttendance"
 val COL_DATE = "date"
+val COL_TIME = "time"
 val COL_SUB = "subject"
 
 val CREDTABLE = "studentCred"
@@ -20,7 +21,7 @@ val COL_PASSWD = "assword"
 class DataBaseHandler(var context:Context) : SQLiteOpenHelper(context, DATABASENAME, null, 1) {
 
     override fun onCreate(db: SQLiteDatabase?) {
-        val createATTable = "CREATE TABLE " + ATTABLE + " (" + COL_DATE + " VARCHAR(256)," + COL_SUB + " VARCHAR(256)" + " )"
+        val createATTable = "CREATE TABLE " + ATTABLE + " (" + COL_DATE + " VARCHAR(256)," + COL_TIME + " VARCHAR(256)," + COL_SUB + " VARCHAR(256)" + " )"
         val createCRTable = "CREATE TABLE " + CREDTABLE + " (" + COL_UID + " VARCHAR(256)," + COL_PASSWD + " VARCHAR(256)" + " )"
         db?.execSQL(createATTable)
         db?.execSQL(createCRTable)
@@ -36,6 +37,7 @@ class DataBaseHandler(var context:Context) : SQLiteOpenHelper(context, DATABASEN
         val contentValues = ContentValues()
 
         contentValues.put(COL_DATE, user.dbDate)
+        contentValues.put(COL_TIME, user.dbTime)
         contentValues.put(COL_SUB, user.dbSub)
 
         val result = database.insert(ATTABLE, null, contentValues)
@@ -65,6 +67,7 @@ class DataBaseHandler(var context:Context) : SQLiteOpenHelper(context, DATABASEN
 
                 val user = User()
                 user.dbDate = result.getString(result.getColumnIndex(COL_DATE))
+                user.dbTime = result.getString(result.getColumnIndex(COL_TIME))
                 user.dbSub = result.getString(result.getColumnIndex(COL_SUB))
 
                 list.add(user)

@@ -7,5 +7,7 @@ class User {
     public var dbPasswd:String = ""
 
     public var dbDate:String = ""
+    public var dbTime:String = ""
     public var dbSub:String = ""
+
 }

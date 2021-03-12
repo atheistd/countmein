@@ -8,23 +8,32 @@ import android.widget.TextView
 
 class disaster_forecast : AppCompatActivity() {
 
-    // new code, who dis?
-    public val sharedPrefFile = "kotlinsharedpreference"
+    // SQLite related init
+    // as this needs to be used in multiple methods
+    // it is best to make this a global thing
+    // but is not safe; Tread carefully, Maze.
+    val context = this
+    val db = DataBaseHandler(context)
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.disaster_forecast)
 
-        // idk what this is, just copy-pasta
-        val context = this
+        val attendance_view = findViewById(R.id.disaster_out) as TextView
 
-        // same voodoo magic from MainActivity
-        val sharedPreferences: SharedPreferences = this.getSharedPreferences(sharedPrefFile, Context.MODE_PRIVATE)
-        val attendance_dates = sharedPreferences.getString("attendanced", "attendanceD")
-        val attendance_sub = sharedPreferences.getString("attendances", "attendanceS")
+        // retrieve values
+        var attendance = db.readData()
+        attendance_view.text = ""
 
-        val temp = findViewById(R.id.disaster_temp) as TextView
-        temp.setText(attendance_dates + "\n" + attendance_sub)
+        for (i in 0 until attendance.size) {
+            attendance_view.append("\nScan date: " + attendance[i].dbDate.toString() + "\tScan time: " + attendance[i].dbTime.toString() + "\tSubject: " + attendance[i].dbSub.toString())
+        }
+
+        // TO DO
+        // THIS HAS NOT BEEN IMPLEMENTED YET
+        // DONT FORGET
+        // add the logic to add a carriage return after every day
+
 
     }
 }

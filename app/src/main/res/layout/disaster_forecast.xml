@@ -7,7 +7,7 @@
     tools:context=".disaster_forecast">
 
     <TextView
-        android:id="@+id/disaster_temp"
+        android:id="@+id/disaster_out"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"/>
 

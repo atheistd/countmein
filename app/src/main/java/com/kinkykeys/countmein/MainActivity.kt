@@ -26,15 +26,15 @@ class MainActivity : AppCompatActivity() {
         val login_button = findViewById(R.id.login_button) as Button
 
 
-        // idk what this is, just (sharedpreferences) copy-pasta
-        val context = this
-
         // SQLite related init
+        val context = this
         val db = DataBaseHandler(context)
-        val cred = db.readCred()
-        val cred_len = cred.size
 
-        if (cred_len == 0) {
+        // read the table with credentials in it
+        val creds = db.readCred()
+        val creds_len = creds.size
+
+        if (creds_len == 0) {
             // do nothing, the cred table is empty
         } else {
             val intent = Intent(this, home::class.java)
@@ -48,8 +48,8 @@ class MainActivity : AppCompatActivity() {
             db.clearCreds()
 
             // declare more (temp) variables
-            val uid:String = var_uid.text.toString()
-            val passwd:String = var_passwd.text.toString()
+            val uid = var_uid.text.toString()
+            val passwd = var_passwd.text.toString()
 
 
             var user = User()

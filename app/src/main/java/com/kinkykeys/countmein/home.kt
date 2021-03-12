@@ -23,31 +23,29 @@ class home : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.home)
 
-        // idk what this is, just copy-pasta
+        // SQLite related init
         val context = this
+        val db = DataBaseHandler(context)
+
 
         // connect variables to UI elements from activity_main.xml to here
-        val home_show_details = findViewById(R.id.show_user_name) as TextView
-        val temp_scan_button = findViewById(R.id.scan_code_button) as Button
-        val temp_stat_button = findViewById(R.id.status_button) as Button
-        // val s_sub_name:TextView = findViewById(R.id.last_sub_name) as TextView
+        val show_details = findViewById(R.id.home_header) as TextView
+        val scan_button = findViewById(R.id.scan_code_button) as Button
+        val attendance_button = findViewById(R.id.show_attendance_button) as Button
 
-        // SQL init
-        val db = DataBaseHandler(context)
 
         // retrieve values
         var cred = db.readCred()
-        var initCred = cred[0]
-        var db_uid = initCred.dbUID
+        var db_uid = cred[0].dbUID
 
-        home_show_details.text = "Welcome, " + db_uid + "\n"
+        show_details.text = "Welcome, " + db_uid + "\n"
 
-        temp_scan_button.setOnClickListener(View.OnClickListener {
+        scan_button.setOnClickListener(View.OnClickListener {
             val intent = Intent(this, scan::class.java)
             startActivity(intent)
         })
 
-        temp_stat_button.setOnClickListener(View.OnClickListener {
+        attendance_button.setOnClickListener(View.OnClickListener {
             val intent = Intent(this, disaster_forecast::class.java)
             startActivity(intent)
         })
