@@ -5,8 +5,10 @@ import android.os.Bundle
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.google.zxing.integration.android.IntentIntegrator
+import com.journeyapps.barcodescanner.CaptureActivity
 import java.time.LocalDateTime
 import java.time.format.DateTimeFormatter
+
 
 class scan : AppCompatActivity() {
 
@@ -24,8 +26,11 @@ class scan : AppCompatActivity() {
         // QR Code scanner related init
         val scanner = IntentIntegrator(this)
         scanner.setDesiredBarcodeFormats(IntentIntegrator.QR_CODE)
+        scanner.setCameraId(0)
+        scanner.setPrompt("Scan the subject QR Code now")
         scanner.setBeepEnabled(false)
-        scanner.setOrientationLocked(false)
+        scanner.setBarcodeImageEnabled(false)
+        scanner.setOrientationLocked(true)
         scanner.initiateScan()
     }
 
@@ -46,9 +51,8 @@ class scan : AppCompatActivity() {
                 // if there is any error, this go back to the home intent for scanning the code again
                 Toast.makeText(this, "An error occurred. Please try again.", Toast.LENGTH_LONG).show()
 
-                // goto the home intent
-                val intent = Intent(this, home::class.java)
-                startActivity(intent)
+                // goto the home intent by ending current activity
+                finish()
 
             } else {
 
@@ -70,11 +74,12 @@ class scan : AppCompatActivity() {
                 user.dbSub = subject
                 db.insertData(user)
 
-                Toast.makeText(this, "QR Code is scanned and the attendance should be updated shortly. " +curr_time, Toast.LENGTH_LONG).show()
+                Toast.makeText(this, "QR Code is scanned and the attendance should be updated shortly.", Toast.LENGTH_LONG).show()
 
                 // goto the attendance intent to verify the
                 val intent = Intent(this, disaster_forecast::class.java)
                 startActivity(intent)
+                finish()
 
             }
         } else {
