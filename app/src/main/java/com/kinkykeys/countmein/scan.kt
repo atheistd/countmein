@@ -73,9 +73,7 @@ class scan : AppCompatActivity() {
                 user.dbTime = curr_time
                 user.dbSub = subject
                 db.insertData(user)
-
-                Toast.makeText(this, "QR Code is scanned and the attendance should be updated shortly.", Toast.LENGTH_LONG).show()
-
+                
                 // goto the attendance intent to verify the
                 val intent = Intent(this, disaster_forecast::class.java)
                 intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
