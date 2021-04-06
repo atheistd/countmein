@@ -31,11 +31,15 @@ class MainActivity : AppCompatActivity() {
         val context = this
         val db = DataBaseHandler(context)
 
-        // read the table with credentials in it
-        val creds = db.readCred()
-        val creds_len = creds.size
+        /* commented out this code
+           as I do not want to implement
+           logout for such silly thing
 
-        if (creds_len == 0) {
+        // read the table with credentials in it
+        val credsS = db.readCred()
+        val credsS_len = credsS.size
+
+        if (credsS_len == 0) {
             // do nothing, the cred table is empty
         } else {
             val intent = Intent(this, home::class.java)
@@ -44,6 +48,19 @@ class MainActivity : AppCompatActivity() {
 
             finish()
         }
+        val credsT = db.readCred()
+        val credsT_len = credsT.size
+
+        if (credsT_len == 0) {
+            // do nothing, the cred table is empty
+        } else {
+            val intent = Intent(this, f_home::class.java)
+            intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
+            startActivity(intent)
+
+            finish()
+        }
+        */
 
 
         // user enters credentials and gets logged in (without passwd verification for the moment)
@@ -51,14 +68,10 @@ class MainActivity : AppCompatActivity() {
 
             db.clearCreds()
 
-            // declare more (temp) variables
-            val uid = var_uid.text.toString()
-            val passwd = var_passwd.text.toString()
-
 
             var user = User()
-            user.dbUID = uid
-            user.dbPasswd = passwd
+            user.dbUID = var_uid.text.toString()
+            user.dbPasswd = var_passwd.text.toString()
             db.insertCred(user)
 
             //  segue into "home" activity
@@ -69,25 +82,18 @@ class MainActivity : AppCompatActivity() {
             finish()
 
         })
-
-
-        // user enters credentials and gets logged in (without passwd verification for the moment)
         t_login_button.setOnClickListener(View.OnClickListener {
 
-            db.clearCreds()
-
-            // declare more (temp) variables
-            val uid = var_uid.text.toString()
-            val passwd = var_passwd.text.toString()
+            db.clearTCreds()
 
 
-            var user = User()
-            user.dbUID = uid
-            user.dbPasswd = passwd
+            var user = Teacher()
+            user.dbUID = var_uid.text.toString()
+            user.dbPasswd = var_passwd.text.toString()
             db.insertCred(user)
 
             //  segue into "home" activity
-            val intent = Intent(this, home::class.java)
+            val intent = Intent(this, f_home::class.java)
             intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
             startActivity(intent)
 
