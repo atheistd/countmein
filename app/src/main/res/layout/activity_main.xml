@@ -6,35 +6,51 @@
     android:layout_height="match_parent"
     tools:context=".MainActivity">
 
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center"
+        android:orientation="vertical" >
+
+        <EditText
+            android:id="@+id/takes_uid"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:hint="Username" />
+
+        <EditText
+            android:id="@+id/takes_passwd"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="textPassword"
+            android:gravity="center"
+            android:hint="Password" />
+
+
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:gravity="center"
-            android:orientation="vertical" >
-
-            <EditText
-                android:id="@+id/takes_uid"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:gravity="center"
-                android:hint="Username" />
-
-            <EditText
-                android:id="@+id/takes_passwd"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:inputType="textPassword"
-                android:gravity="center"
-                android:hint="Password" />
+            android:orientation="horizontal" >
 
             <Button
-                android:id="@+id/login_button"
+                android:id="@+id/student_login_button"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:gravity="center"
-                android:text="Log In" />
+                android:text="Log In (Student)" />
 
+            <Button
+                android:id="@+id/teacher_login_button"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="Log In (Teacher)" />
 
         </LinearLayout>
+
+
+    </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
