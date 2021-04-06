@@ -12,19 +12,26 @@ val ATTABLE = "studentAttendance"
 val COL_DATE = "date"
 val COL_TIME = "time"
 val COL_SUB = "subject"
+val COL_SUID = "stdID"
 
 val CREDTABLE = "studentCred"
 val COL_UID = "username"
 val COL_PASSWD = "assword"
 
+val FTABLE = "teacherCred"
+val COL_FID = "username"
+val COL_ASSWD = "assword"
+
 
 class DataBaseHandler(var context:Context) : SQLiteOpenHelper(context, DATABASENAME, null, 1) {
 
     override fun onCreate(db: SQLiteDatabase?) {
-        val createATTable = "CREATE TABLE " + ATTABLE + " (" + COL_DATE + " VARCHAR(256)," + COL_TIME + " VARCHAR(256)," + COL_SUB + " VARCHAR(256)" + " )"
+        val createATTable = "CREATE TABLE " + ATTABLE + " (" + COL_DATE + " VARCHAR(256)," + COL_TIME + " VARCHAR(256)," + COL_SUB + " VARCHAR(256)" + COL_SUID + " VARCHAR(256)" + " )"
         val createCRTable = "CREATE TABLE " + CREDTABLE + " (" + COL_UID + " VARCHAR(256)," + COL_PASSWD + " VARCHAR(256)" + " )"
+        val createFTable = "CREATE TABLE " + FTABLE + " (" + COL_FID + " VARCHAR(256)," + COL_ASSWD + " VARCHAR(256)" + " )"
         db?.execSQL(createATTable)
         db?.execSQL(createCRTable)
+        db?.execSQL(createFTable)
     }
 
     override fun onUpgrade(db: SQLiteDatabase?, oldVersion: Int, newVersion: Int) {
