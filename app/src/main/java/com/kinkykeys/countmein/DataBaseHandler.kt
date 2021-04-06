@@ -94,6 +94,15 @@ class DataBaseHandler(var context:Context) : SQLiteOpenHelper(context, DATABASEN
 
     }
 
+    fun clearTCreds() {
+
+        val database = this.writableDatabase
+        val contentValues = ContentValues()
+
+        val result = database.delete(FTABLE, "", null)
+
+    }
+
     fun insertCred(user: User) {
 
         val database = this.writableDatabase
