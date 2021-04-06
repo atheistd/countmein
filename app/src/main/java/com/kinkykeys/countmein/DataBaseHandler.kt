@@ -26,7 +26,7 @@ val COL_ASSWD = "assword"
 class DataBaseHandler(var context:Context) : SQLiteOpenHelper(context, DATABASENAME, null, 1) {
 
     override fun onCreate(db: SQLiteDatabase?) {
-        val createATTable = "CREATE TABLE " + ATTABLE + " (" + COL_DATE + " VARCHAR(256)," + COL_TIME + " VARCHAR(256)," + COL_SUB + " VARCHAR(256)" + COL_SUID + " VARCHAR(256)" + " )"
+        val createATTable = "CREATE TABLE " + ATTABLE + " (" + COL_DATE + " VARCHAR(256)," + COL_TIME + " VARCHAR(256)," + COL_SUB + " VARCHAR(256)," + COL_SUID + " VARCHAR(256)" + " )"
         val createCRTable = "CREATE TABLE " + CREDTABLE + " (" + COL_UID + " VARCHAR(256)," + COL_PASSWD + " VARCHAR(256)" + " )"
         val createFTable = "CREATE TABLE " + FTABLE + " (" + COL_FID + " VARCHAR(256)," + COL_ASSWD + " VARCHAR(256)" + " )"
         db?.execSQL(createATTable)
