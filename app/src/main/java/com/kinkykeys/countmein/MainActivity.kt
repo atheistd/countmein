@@ -23,7 +23,8 @@ class MainActivity : AppCompatActivity() {
         // connect variables to UI elements from activity_main.xml to here
         val var_uid = findViewById(R.id.takes_uid) as EditText
         val var_passwd = findViewById(R.id.takes_passwd) as EditText
-        val login_button = findViewById(R.id.login_button) as Button
+        val s_login_button = findViewById(R.id.student_login_button) as Button
+        val t_login_button = findViewById(R.id.teacher_login_button) as Button
 
 
         // SQLite related init
@@ -46,7 +47,32 @@ class MainActivity : AppCompatActivity() {
 
 
         // user enters credentials and gets logged in (without passwd verification for the moment)
-        login_button.setOnClickListener(View.OnClickListener {
+        s_login_button.setOnClickListener(View.OnClickListener {
+
+            db.clearCreds()
+
+            // declare more (temp) variables
+            val uid = var_uid.text.toString()
+            val passwd = var_passwd.text.toString()
+
+
+            var user = User()
+            user.dbUID = uid
+            user.dbPasswd = passwd
+            db.insertCred(user)
+
+            //  segue into "home" activity
+            val intent = Intent(this, home::class.java)
+            intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
+            startActivity(intent)
+
+            finish()
+
+        })
+
+
+        // user enters credentials and gets logged in (without passwd verification for the moment)
+        t_login_button.setOnClickListener(View.OnClickListener {
 
             db.clearCreds()
 
