@@ -46,6 +46,7 @@ class DataBaseHandler(var context:Context) : SQLiteOpenHelper(context, DATABASEN
         contentValues.put(COL_DATE, user.dbDate)
         contentValues.put(COL_TIME, user.dbTime)
         contentValues.put(COL_SUB, user.dbSub)
+        contentValues.put(COL_SUID, user.dbUID)
 
         val result = database.insert(ATTABLE, null, contentValues)
 
@@ -76,6 +77,7 @@ class DataBaseHandler(var context:Context) : SQLiteOpenHelper(context, DATABASEN
                 user.dbDate = result.getString(result.getColumnIndex(COL_DATE))
                 user.dbTime = result.getString(result.getColumnIndex(COL_TIME))
                 user.dbSub = result.getString(result.getColumnIndex(COL_SUB))
+                user.dbUID = result.getString(result.getColumnIndex(COL_SUID))
 
                 list.add(user)
 
