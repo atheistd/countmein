@@ -21,6 +21,7 @@ class f_atnview : AppCompatActivity() {
 
         // retrieve values
         var attendance = db.readData()
+        attendance.sortBy { it.dbSub }
         attendance_view.text = ""
 
         var temp_day = ""
