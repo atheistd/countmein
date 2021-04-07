@@ -24,3 +24,8 @@ has no remote database code-blocks, and hence will not scale *at all*.
 
 
 ### License
+
+**MIT**
+
+Use it as you wish,
+I do not care.
