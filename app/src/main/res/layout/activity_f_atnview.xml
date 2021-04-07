@@ -6,4 +6,9 @@
     android:layout_height="match_parent"
     tools:context=".f_atnview">
 
+    <TextView
+        android:id="@+id/teach_attn_view"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
+
 </androidx.constraintlayout.widget.ConstraintLayout>

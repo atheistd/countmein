@@ -90,7 +90,7 @@ class MainActivity : AppCompatActivity() {
             var user = Teacher()
             user.dbUID = var_uid.text.toString()
             user.dbPasswd = var_passwd.text.toString()
-            db.insertCred(user)
+            db.insertTCred(user)
 
             //  segue into "home" activity
             val intent = Intent(this, f_home::class.java)

@@ -150,4 +150,52 @@ class DataBaseHandler(var context:Context) : SQLiteOpenHelper(context, DATABASEN
         return list
     }
 
+
+
+
+    fun insertTCred(user: Teacher) {
+
+        val database = this.writableDatabase
+        val contentValues = ContentValues()
+
+        contentValues.put(COL_FID, user.dbUID)
+        contentValues.put(COL_ASSWD, user.dbPasswd)
+
+        val result = database.insert(FTABLE, null, contentValues)
+
+        if (result == (0).toLong()) {
+
+            Toast.makeText(context, "Failed", Toast.LENGTH_SHORT).show()
+
+        } else {
+
+            Toast.makeText(context, "Success", Toast.LENGTH_SHORT).show()
+
+        }
+
+    }
+
+
+    fun readTCred(): MutableList<Teacher> {
+
+        val list: MutableList<Teacher> = ArrayList()
+        val db = this.readableDatabase
+        val query = "Select * from $FTABLE"
+        val result = db.rawQuery(query, null)
+
+        if (result.moveToFirst()) {
+            do {
+
+                val user = Teacher()
+                user.dbUID = result.getString(result.getColumnIndex(COL_FID))
+                user.dbPasswd = result.getString(result.getColumnIndex(COL_ASSWD))
+
+                list.add(user)
+
+            } while (result.moveToNext())
+        }
+
+        return list
+    }
+
 }

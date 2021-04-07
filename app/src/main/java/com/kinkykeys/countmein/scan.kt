@@ -56,6 +56,14 @@ class scan : AppCompatActivity() {
 
             } else {
 
+                // SQLite related init
+                val context = this
+                val db = DataBaseHandler(context)
+
+                // fetch dbUID
+                var cred = db.readCred()
+                var dbuid_tosave = cred[0].dbUID
+
                 // get the local time of scan
                 val curr_date_time = LocalDateTime.now()
                 // pattern for formatting curr_date_time later on
@@ -72,6 +80,7 @@ class scan : AppCompatActivity() {
                 user.dbDate = curr_date
                 user.dbTime = curr_time
                 user.dbSub = subject
+                user.dbUID = dbuid_tosave
                 db.insertData(user)
                 
                 // goto the attendance intent to verify the
