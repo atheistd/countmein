@@ -21,7 +21,7 @@
             android:layout_marginRight="20dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Enter student's ID" />
+            android:hint="Enter student's ID" />
 
         <EditText
             android:id="@+id/takes_subject"
@@ -29,7 +29,7 @@
             android:layout_marginRight="20dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Enter subject name" />
+            android:hint="Enter subject name" />
 
         <EditText
             android:id="@+id/takes_date"
@@ -37,7 +37,7 @@
             android:layout_marginRight="20dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Enter date" />
+            android:hint="Enter date (dd-MM)" />
 
         <EditText
             android:id="@+id/takes_time"
@@ -45,7 +45,7 @@
             android:layout_marginRight="20dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Enter scheduled time of subject" />
+            android:hint="Enter scheduled time of subject (HH:mm:ss) " />
 
         <Button
             android:id="@+id/mod_db"
