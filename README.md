@@ -12,7 +12,7 @@ Run it from Android Studio.
 
 
 
-### Future of this project
+### Future of this project/Maintenance
 
 **NONE**; This is just a diploma final year project I made in Kotlin as I didn't have an iDevice.
 
