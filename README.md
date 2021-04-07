@@ -20,7 +20,7 @@ This codebase is in no way mature enough for production environment
 as it is *good enough for my college*.
 
 You have been warned, this project (at least at the time of writing this),
-has no remote database code-blocks, and hence will not scale *at all*.
+has no remote database code-blocks, and hence **will not scale *at all* **.
 
 
 ### License
