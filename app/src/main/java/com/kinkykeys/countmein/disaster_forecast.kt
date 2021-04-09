@@ -29,25 +29,21 @@ class disaster_forecast : AppCompatActivity() {
         var table_size = attendance.size
         var i = 0
 
-        if (table_size == 0) {
-            attendance_view.append("No data in the table. Please scan the barcode to populate the attendance table.")
-        } else {
+        // fetch dbUID
+        var cred = db.readCred()
+        val dbuid_tosave = cred[0].dbUID
 
-            do {
-
-                if (temp_day.equals(attendance[i].dbDate.toString(), true)) {
-                    // do nothing as both dates are same
-                } else {
-                    attendance_view.append("\n\n" + attendance[i].dbDate.toString())
-                    temp_day = attendance[i].dbDate.toString()
+        if (table_size > 0) {
+            for (entry in attendance) {
+                if (dbuid_tosave.equals(entry.dbUID.toString(), ignoreCase = true)) {
+                    if (!temp_day.equals(entry.dbDate.toString(), ignoreCase = true)) {
+                        attendance_view.append("\n\n" + entry.dbDate.toString())
+                        temp_day = entry.dbDate.toString()
+                    }
+                    attendance_view.append("\nScan time:\t" + entry.dbTime.toString() + "\tSubject:\t" + entry.dbSub.toString())
                 }
-
-                attendance_view.append("\nScan time: " + attendance[i].dbTime.toString() + "\tSubject: " + attendance[i].dbSub.toString())
-                i = i + 1
-            } while (i < table_size)
-
+            }
         }
-
 
     }
 }

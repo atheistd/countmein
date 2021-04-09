@@ -62,7 +62,7 @@ class scan : AppCompatActivity() {
 
                 // fetch dbUID
                 var cred = db.readCred()
-                var dbuid_tosave = cred[0].dbUID
+                val dbuid_tosave = cred[0].dbUID
 
                 // get the local time of scan
                 val curr_date_time = LocalDateTime.now()
