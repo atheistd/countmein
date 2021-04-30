@@ -40,23 +40,26 @@ class disaster_forecast : AppCompatActivity() {
         }
 
         if (dbuid_tosave.isNullOrEmpty()) {
+
+            } else {
+                if (table_size > 0) {
+                    for (entry in attendance) {
+                        if (dbuid_tosave.equals(entry.dbUID.toString(), ignoreCase = true)) {
+                            if (!temp_day.equals(entry.dbDate.toString(), ignoreCase = true)) {
+                                attendance_view.append("\n\n" + entry.dbDate.toString())
+                                temp_day = entry.dbDate.toString()
+                            }
+                            attendance_view.append("\nScan time:\t" + entry.dbTime.toString() + "\tSubject:\t" + entry.dbSub.toString())
+                        } else {
+                            nodata()
+                        }
+                    }
+
+            }
             nodata()
             attendance_view.append("\n\n\nWARNING: Empty/NULL UID.\nCheckback with your administrator.")
-
-            if (table_size > 0) {
-                for (entry in attendance) {
-                    if (dbuid_tosave.equals(entry.dbUID.toString(), ignoreCase = true)) {
-                        if (!temp_day.equals(entry.dbDate.toString(), ignoreCase = true)) {
-                            attendance_view.append("\n\n" + entry.dbDate.toString())
-                            temp_day = entry.dbDate.toString()
-                        }
-                        attendance_view.append("\nScan time:\t" + entry.dbTime.toString() + "\tSubject:\t" + entry.dbSub.toString())
-                    }
-                }
-            } else {
-                nodata()
-            }
         }
+
 
 
     }
