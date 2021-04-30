@@ -33,17 +33,31 @@ class disaster_forecast : AppCompatActivity() {
         var cred = db.readCred()
         val dbuid_tosave = cred[0].dbUID
 
-        if (table_size > 0) {
-            for (entry in attendance) {
-                if (dbuid_tosave.equals(entry.dbUID.toString(), ignoreCase = true)) {
-                    if (!temp_day.equals(entry.dbDate.toString(), ignoreCase = true)) {
-                        attendance_view.append("\n\n" + entry.dbDate.toString())
-                        temp_day = entry.dbDate.toString()
+        fun nodata() {
+            attendance_view.append("No data available at this moment.")
+            attendance_view.append("\nPlease scan the QR Codes to populate this view.")
+            attendance_view.append("\n\nIf this problem still persists even after scanning QR Code(s), please contact your administrator.")
+        }
+
+        if (dbuid_tosave.isNullOrEmpty()) {
+            nodata()
+            attendance_view.append("\n\n\nWARNING: Empty/NULL UID.\nCheckback with your administrator.")
+
+            if (table_size > 0) {
+                for (entry in attendance) {
+                    if (dbuid_tosave.equals(entry.dbUID.toString(), ignoreCase = true)) {
+                        if (!temp_day.equals(entry.dbDate.toString(), ignoreCase = true)) {
+                            attendance_view.append("\n\n" + entry.dbDate.toString())
+                            temp_day = entry.dbDate.toString()
+                        }
+                        attendance_view.append("\nScan time:\t" + entry.dbTime.toString() + "\tSubject:\t" + entry.dbSub.toString())
                     }
-                    attendance_view.append("\nScan time:\t" + entry.dbTime.toString() + "\tSubject:\t" + entry.dbSub.toString())
                 }
+            } else {
+                nodata()
             }
         }
+
 
     }
 }

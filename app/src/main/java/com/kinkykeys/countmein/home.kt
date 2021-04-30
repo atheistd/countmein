@@ -40,6 +40,18 @@ class home : AppCompatActivity() {
 
         show_details.text = "Welcome, " + db_uid + "\n"
 
+        if (db_uid.isNullOrEmpty()) {
+            var empty_UID_warning = """
+                ⚠️WARNING⚠️Empty/NULL UID detected.
+                
+                Make sure you entered your username and or password.
+                Scanning a QR Code with this UID will result in "anonymous" data.
+                
+                Proceed with caution.
+            """.trimIndent()
+            show_details.text = empty_UID_warning
+        }
+
         scan_button.setOnClickListener(View.OnClickListener {
             val intent = Intent(this, scan::class.java)
             startActivity(intent)
