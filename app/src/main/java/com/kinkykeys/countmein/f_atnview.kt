@@ -32,7 +32,7 @@ class f_atnview : AppCompatActivity() {
         var i = 0
 
         if (table_size == 0) {
-            attendance_view.append("No data in the table. Please scan the barcode to populate the attendance table.")
+            attendance_view.append("No data in the table. Please tell your pupils to scan your QR Code.")
         } else {
 
             do {
